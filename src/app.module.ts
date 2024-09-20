@@ -7,6 +7,7 @@ import { dataSourceOptions } from 'database/data-source';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { UserModule } from './user/user.module';
     }),
     TypeOrmModule.forRoot(dataSourceOptions),
     UserModule,
+    ProfileModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,4 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { IsEmail } from "class-validator";
+import { Profile } from "src/profile/entities/profile.entity";
+import { Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('users')
 export class User {
@@ -15,8 +17,12 @@ export class User {
     activated: boolean;
 
     @Column({ unique: true, length:100 })
+    @IsEmail()
     email: string;
 
     @Column({ length:100 })
     password: string;
+
+    @OneToOne(() => Profile, profile => profile.user)
+    profile: Profile;
 }
